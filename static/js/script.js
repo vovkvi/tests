@@ -72,8 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
     btnReset = document.querySelector('.vvi-btn-reset');
     btnStartStop = document.querySelector('.vvi-btn-stop');
     timerCounter = document.getElementById('time-counter');
+    document.querySelector('.vvi-fullscreen').onclick = divFullScreen;
 
     fetchConfig().then(() => {
+        console.log(jsonData);
+
         let testId = jsonData.data[pageParams.data];
         if (testId == undefined) {
             console.error(`Тест с ID = ${pageParams.data} не найден в файле конфигурации.`);
@@ -288,4 +291,18 @@ function checkAnswers() {
         e.style.display = 'unset';
     });
     showAlert();
+}
+
+function divFullScreen() {
+    const main_cnt = document.querySelector(".vvi-content");
+    if (main_cnt.hasAttribute('fullscreen')) {
+        document.exitFullscreen();
+        main_cnt.removeAttribute('fullscreen');
+        document.querySelector('.vvi-fs-icon').className = 'vvi-fs-icon ri-fullscreen-fill';
+    }
+    else {
+        main_cnt.requestFullscreen();
+        main_cnt.setAttribute('fullscreen','');
+        document.querySelector('.vvi-fs-icon').className = 'vvi-fs-icon ri-fullscreen-exit-fill';
+    }
 }
