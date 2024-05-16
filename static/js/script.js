@@ -74,8 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     timerCounter = document.getElementById('time-counter');
 
     fetchConfig().then(() => {
-        console.log(jsonData);
-
         let testId = jsonData.data[pageParams.data];
         if (testId == undefined) {
             console.error(`Тест с ID = ${pageParams.data} не найден в файле конфигурации.`);
