@@ -75,8 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.vvi-fullscreen').onclick = divFullScreen;
 
     fetchConfig().then(() => {
-        console.log(jsonData);
-
         let testId = jsonData.data[pageParams.data];
         if (testId == undefined) {
             console.error(`Тест с ID = ${pageParams.data} не найден в файле конфигурации.`);
