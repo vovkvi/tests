@@ -1,0 +1,153 @@
+:root {
+    --tgc-color: #1a68bbff;
+}
+
+*,*::before,*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(rgba(244, 247, 255, 0.9), rgba(244, 247, 255, 0.9)), url("../img/ptrn-1.jpg");
+    background-size: repeat;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+#time-counter {
+    font-size: 1.8rem;
+}
+.bg-red {
+    background-color: red;
+}
+
+.top-panel,
+.bottom-panel,
+.main-content {
+    background-color: #ffffff;
+    border: 1px solid #d3d3d3;
+}
+
+.top-panel {
+    padding: 0.25rem;
+    height: 2.5rem;
+}
+.bottom-panel {
+    padding: 0.25rem;
+    height: 3rem;
+}
+
+.top-panel {
+    color: #ffffff;
+    background-color: var(--tgc-color);
+}
+
+.top-panel .btn {
+    font-size: 10pt;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+.top-panel .btn:hover {
+    background-color: #ffffff;
+    color: var(--tgc-color);
+}
+
+.main-content {
+    flex: 1 auto;
+    height: 0;
+    overflow-y: auto;
+}
+.main-content .row,
+.main-content .card,
+.main-content .accordion,
+.main-content .table,
+.main-content .test-info-card {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 900px;
+}
+
+.bottom-panel .timer-icon {
+    font-size: 24pt;
+}
+
+/* List Group Style (bootstrap) */
+
+.list-group {
+    width: 100%;
+}
+
+.form-check-input:checked+.form-checked-content {
+    font-weight: bold;
+}
+
+.form-check-input {
+    font-size: 1.375em;
+    border: 1px solid var(--bs-card-border-color);
+}
+
+.form-check-input-placeholder {
+    border-style: dashed;
+}
+
+[contenteditable]:focus {
+    outline: 0;
+}
+
+.list-group-checkable .list-group-item {
+    cursor: pointer;
+}
+
+.list-group-item-check {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+
+.list-group-item-check:hover+.list-group-item {
+    background-color: var(--bs-secondary-bg);
+}
+
+.list-group-item-check:checked+.list-group-item {
+    color: #fff;
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.list-group-item-check[disabled]+.list-group-item,
+.list-group-item-check:disabled+.list-group-item {
+    pointer-events: none;
+    filter: none;
+    opacity: .5;
+}
+
+.list-group-radio .list-group-item {
+    cursor: pointer;
+    border-radius: .5rem;
+}
+
+.list-group-radio .form-check-input {
+    z-index: 2;
+    margin-top: -.5em;
+}
+
+.list-group-radio .list-group-item:hover,
+.list-group-radio .list-group-item:focus {
+    background-color: var(--bs-secondary-bg);
+}
+
+.list-group-radio .form-check-input:checked+.list-group-item {
+    background-color: var(--bs-body);
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 2px var(--bs-primary);
+}
+
+.list-group-radio .form-check-input[disabled]+.list-group-item,
+.list-group-radio .form-check-input:disabled+.list-group-item {
+    pointer-events: none;
+    filter: none;
+    opacity: .5;
+}
+
+/* List Group Style END */

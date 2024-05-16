@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExaM | Тесты для всех</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./favicon.ico" type="image/vnd.microsoft.icon">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./static/libs/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./static/libs/remixicon/remixicon.css" />
+    <link rel="stylesheet" href="./static/css/style.css" />
+</head>
+
+<body>
+
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="vvi-loader w-100 h-100 d-flex align-items-center justify-content-center">
+                <div class="spinner-grow text-primary" role="status"></div>
+                <div class="spinner-grow text-primary mx-3" role="status"></div>
+                <div class="spinner-grow text-primary" role="status"></div>
+            </div>
+
+            <div class="vvi-content col-12 d-flex flex-column" style="display: none;">
+
+                <div class="top-panel shadow-sm d-flex align-items-center">
+                    <div class="d-flex align-items-center" style="flex: 1 auto;">
+                        <i class="ri-ball-pen-fill mx-2"></i>
+                        <div>
+                            Тест: <span class="vvi-test-title"></span>
+                        </div>
+                    </div>
+                    <div class="justify-content-end">
+                        <button class="top-panel-btn btn btn-sm btn-secondary" title="Меню">
+                            <i class="ri-menu-fill"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="main-content d-flex flex-column shadow-sm p-2">
+
+                    <div class="test-info-card w-100">
+                        <div class="text-center">
+                            <h4>Информация</h4>
+                        </div>
+                        <hr>
+                        <h5>Вопросов в тесте: <b class="test-count"></b>.</h5>
+                        <h5>Чтобы сдать тест нужно дать не менее <b class="test-limit"></b> правильных ответов.</h5>
+                        <h5>Время тестирования: <b class="test-time"></b> минут</h5>
+                        <br>
+                        <p>Управление:</p>
+                        <p>
+                            <button type="button" class="btn btn-danger btn-sm" disabled="">Старт</button>
+                            - Запуск теста.
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-success btn-sm" disabled="">
+                                <i class="ri-refresh-line"></i>
+                            </button>
+                            - Пройти тест ещё раз.
+                        </p>
+
+                        <p>
+                            <button type="button" class="btn btn-warning btn-sm" disabled="">
+                                <i class="ri-question-mark"></i>
+                            </button>
+                            - Показать это информационное окно
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-secondary btn-sm" disabled="">
+                                <i class="ri-menu-fill"></i>
+                            </button>
+                            - Вернуться в меню выбора тестов.
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-danger btn-sm" disabled="">Стоп</button>
+                            - Завершить тест.
+                        </p>
+                        <p>По завершении теста Вы увидете сообщение с результатом теста. Также будут показаны
+                            <b><span style="color: green;">правильные</span></b>
+                            варианты ответов и те, которые
+                            Вы отметили
+                            <b><span style="color: red;">ошибочно</span></b>.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="bottom-panel d-flex align-items-center shadow-sm">
+                    <div class="d-flex align-items-center" style="flex: 1 auto;">
+                        <i class="timer-icon ri-timer-line mx-2"></i>
+                        <div class="d-flex align-items-center">
+                            <span id="time-counter">--:--</span>
+                        </div>
+                    </div>
+                    <div class="justify-content-end">
+                        <button type="button" class="vvi-btn-reset btn btn-success mx-1" title="Сброс">
+                            <i class="ri-refresh-line"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" title="Справка"
+                            data-bs-target="#staticBackdrop">
+                            <i class="ri-question-mark"></i>
+                        </button>
+                        <button class="vvi-btn-stop btn btn-danger mx-1" title="Начать/Закончить тест">
+                            Старт
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal OK -->
+    <div class="modal fade" id="answerOK" data-bs-keyboard="false" tabindex="-1" aria-labelledby="answerOKLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="info-card modal-body text-center">
+                    <h1><i class="ri-check-fill" style="color: green; font-size: 60pt;"></i></h1>
+                    <h1>Тест пройден</h1>
+                    <h4 class="right-answers m-3 text-secondary"></h4>
+                    <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal"
+                        data-bs-target="#answerOK">Продолжить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal FAIL-->
+    <div class="modal fade" id="answerFAIL" data-bs-keyboard="false" tabindex="-1" aria-labelledby="answerFAILLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <h1><i class="ri-close-fill" style="color: red; font-size: 60pt;"></i></h1>
+                    <h2 class="my-1">Тест не пройден</h2>
+                    <h4 class="right-answers m-3 text-secondary"></h4>
+                    <button type="button" class="btn btn-danger mt-3" data-bs-toggle="modal"
+                        data-bs-target="#answerFAIL">Смотреть ошибки</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal INFO -->
+    <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel"><span class="m-2">Информация</span></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="info-card modal-body">
+                    <h5>Вопросов в тесте: <b class="test-count"></b>.</h5>
+                    <h5>Чтобы сдать тест нужно дать не менее <b class="test-limit"></b> правильных ответов.</h5>
+                    <h5>Время тестирования: <b class="test-time"></b> минут</h5>
+                    <br>
+                    <p>Управление:</p>
+                    <p>
+                        <button type="button" class="btn btn-danger btn-sm" disabled="">Старт</button>
+                        - Запуск теста.
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-success btn-sm" disabled="">
+                            <i class="ri-refresh-line"></i>
+                        </button>
+                        - Пройти тест ещё раз.
+                    </p>
+
+                    <p>
+                        <button type="button" class="btn btn-warning btn-sm" disabled="">
+                            <i class="ri-question-mark"></i>
+                        </button>
+                        - Показать это информационное окно
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-secondary btn-sm" disabled="">
+                            <i class="ri-menu-fill"></i>
+                        </button>
+                        - Вернуться в меню выбора тестов.
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-danger btn-sm" disabled="">Стоп</button>
+                        - Завершить тест.
+                    </p>
+                    <p>По завершении теста Вы увидете сообщение с результатом теста. Также будут показаны
+                        <b><span style="color: green;">правильные</span></b>
+                        варианты ответов и те, которые
+                        Вы отметили
+                        <b><span style="color: red;">ошибочно</span></b>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./static/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./static/libs/js-yaml.min.js"></script>
+    <script src="./static/js/script.js"></script>
+
+</body>
+
+</html>
