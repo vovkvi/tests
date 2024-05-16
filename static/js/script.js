@@ -10,23 +10,20 @@ let started = false;
 let stopped = false;
 let pass = '0';
 
-let yamlPath;
-
 let jsonData;
 async function fetchConfig() {
     try {
         const response = await fetch('./config.json');
         jsonData = await response.json();
-        yamlPath = jsonData.yaml_path;
     } catch (e) {
         console.error(`[fetchConfig] code: ${e.status}; message: ${e}`);
     }
 }
 
 let yamlData;
-async function fetchData(yamlName) {
+async function fetchData(yamlPth) {
     try {
-        const response = await fetch(`${yamlData}/static/data/${yamlName}.yaml`)
+        const response = await fetch(yamlPth)
             .then(res => res.blob())
             .then(blob => blob.text());
         yamlData = await jsyaml.load(response);
@@ -78,12 +75,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchConfig().then(() => {
         console.log(jsonData);
+
         let testId = jsonData.data[pageParams.data];
         if (testId == undefined) {
             console.error(`Тест с ID = ${pageParams.data} не найден в файле конфигурации.`);
             return;
         }
-        fetchData(pageParams.data).then(() => {
+        fetchData(`${jsonData.yaml_path}/${pageParams.data}.yaml`).then(() => {
             count = yamlData.time;
             set_element_innerHTML('test-count', yamlData.count);
             set_element_innerHTML('vvi-test-title', yamlData.code);
