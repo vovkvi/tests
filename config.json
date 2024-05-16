@@ -1,5 +1,5 @@
 {
-	"yaml_path": "https://raw.githubusercontent.com/vovkvi/tests/main",
+	"yaml_path": "./static/data",
 	"data": {
 		"nds-eu": {
 			"code": "НДС-ЭУ",
