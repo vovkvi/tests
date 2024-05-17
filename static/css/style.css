@@ -11,7 +11,7 @@
 body {
     background-image: linear-gradient(rgba(244, 247, 255, 0.9), rgba(244, 247, 255, 0.9)), url("../img/ptrn-1.jpg");
     background-size: repeat;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     position: relative;
 }
@@ -23,25 +23,34 @@ body {
     background-color: red;
 }
 
+.bottom-panel-wrapper {
+    position: fixed;
+    bottom: 0.5rem;
+    height: 3rem;
+    z-index: 100;
+}
+
 .top-panel,
-.bottom-panel,
-.main-content {
+.test-info-card {
     background-color: #ffffff;
     border: 1px solid #d3d3d3;
 }
 
 .top-panel {
+    position: fixed;
+    z-index: 100;
+    top: 0;
     padding: 0.25rem;
     height: 2.5rem;
+    color: #ffffff;
+    background-color: var(--tgc-color);
 }
 .bottom-panel {
     padding: 0.25rem;
-    height: 3rem;
-}
-
-.top-panel {
+    height: 100%;
+    background-color: #3b3b3b;
     color: #ffffff;
-    background-color: var(--tgc-color);
+    border-radius: 8px;
 }
 
 .top-panel .btn {
@@ -53,11 +62,8 @@ body {
     background-color: #ffffff;
     color: var(--tgc-color);
 }
-
 .main-content {
-    flex: 1 auto;
-    height: 0;
-    overflow-y: auto;
+    margin-bottom: 3rem;
 }
 .main-content .row,
 .main-content .card,
@@ -71,6 +77,10 @@ body {
 
 .bottom-panel .timer-icon {
     font-size: 24pt;
+}
+
+.card-header h5 {
+    font-size: 1.1rem;
 }
 
 /* List Group Style (bootstrap) */
