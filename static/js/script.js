@@ -92,8 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
             btnStartStop.disabled = false;
             btnReset.disabled = true;
             btnReset.onclick = resetTest;
-            document.querySelector('.vvi-loader').remove();
-            document.querySelector('.vvi-content').style.display = 'flex';
+			document.querySelector('.vvi-loader').remove();
+            document.querySelector('body .container').style.display = 'block';
+            document.querySelector('body .bottom-panel-wrapper').style.display = 'flex';
+            document.querySelector('body .top-panel').style.display = 'flex';
         });
     });
 });
@@ -292,15 +294,12 @@ function checkAnswers() {
 }
 
 function divFullScreen() {
-    const main_cnt = document.querySelector(".vvi-content");
-    if (main_cnt.hasAttribute('fullscreen')) {
+    if (document.fullscreenElement) {
         document.exitFullscreen();
-        main_cnt.removeAttribute('fullscreen');
         document.querySelector('.vvi-fs-icon').className = 'vvi-fs-icon ri-fullscreen-fill';
     }
     else {
-        main_cnt.requestFullscreen();
-        main_cnt.setAttribute('fullscreen','');
+        document.documentElement.requestFullscreen();
         document.querySelector('.vvi-fs-icon').className = 'vvi-fs-icon ri-fullscreen-exit-fill';
     }
 }
