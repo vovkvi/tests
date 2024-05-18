@@ -246,7 +246,7 @@ function getCheckRadioCard(idx, object) {
 }
 
 function showAlert() {
-    let modalId = (correct >= jsonData.limit) ? 'answerOK' : 'answerFAIL';
+    let modalId = (correct >= yamlData.limit) ? 'answerOK' : 'answerFAIL';
     let modal = document.getElementById(modalId);
     Object.assign(modal.querySelector('h4.right-answers'), {
         innerHTML: `Вы ответили верно на ${correct} из ${keys.length}`
